@@ -1,0 +1,29 @@
+function valueForIndex(i, array) {
+		if (i < 0 || i > array.length - 1)
+			return 0;
+		else
+ return array[i] != null && array[i] != undefined ? array[i]: 0;
+}
+
+
+function printPascalTriangle(numberOfRows) {
+		var numbers = []
+		var numbersRow = []
+		numbers[numberOfRows] = 1;
+		for (var i = 0; i < numberOfRows; i++) {
+			for (var j = 0; j < numbers.length; j++) {
+				if (i == 0) {
+			console.log(numbers[j] == 0 ? " " : numbers[j]);
+				} else {
+					var temp = valueForIndex(j - 1, numbers) + valueForIndex(j + 1, numbers);
+					console.log(temp == 0 ? " " : temp);
+					numbersRow[j] = temp;
+				}
+
+			}
+			if (i > 0)
+				numbers = numbersRow.slice();
+
+		}
+
+	}
