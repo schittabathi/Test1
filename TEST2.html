@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exam Document</title>
+    <style>
+        .container {
+            margin: 0 auto;
+    	    padding: 20px;
+        }
+ 
+        .block {
+            display: inline-block;
+            position: relative;
+            border: 1px solid grey;
+            text-align: center;
+            font-size: .8em;
+            width: 2em;
+        }
+ 
+        .divblock {
+            text-align: center;
+            vertical-align: middle;
+        }
+	</style>
+</head>
+<body>
+ <div class="container">
+	<h5 id="arr"> Given array list : <br> </h5>
+	<p id="odd">Print odd List : <br></p>
+	<h5>Two ways to print pascal Triangle</h5>
+
+ 	<input type="text" placeholder="Enter number of rows to get pascal Triangle" style="width:50%" id="numRows">
+        <input type="button"  value="printTriangle " name="printTriangle " onClick="printPascalTriangle() ">
+        <p> Directly giving the number or by enter value in the input and click</p>
+	<p id="triangle"></p>
+
+ </div>
+
+<script>
+var arrayNumbers = [1,2,3,4,5,6,7,8,9,10,-11,-12];
+document.getElementById("arr").innerHTML +=  arrayNumbers;
+var oddArrayFun = function (num) {
+//console.log( num % 2 != 0);
+return num % 2 != 0;
+
+
+};
+var oddArrayList = arrayNumbers.filter(oddArrayFun);
+document.getElementById("odd").innerHTML +=  oddArrayList;
+
+//pascal triangle
+function printPascalTriangle(){
+document.getElementById("triangle").innerHTML = "";
+            var rows = document.getElementById("numRows").value;
+            var arr = pascalSimpleTriangle(rows);
+	printPascal(arr);
+}
+
+function pascalSimpleTriangle(numberOfRows) {
+  var triangle = [
+    [1]
+  ],
+  pascal;
+
+  for (var j = 0; j < numberOfRows -1; j++) {
+    pascal = [1];
+    for (var k = 1; k < triangle[j].length; k++) {
+      pascal[k] = triangle[j][k] + triangle[j][k-1];
+    }
+    pascal.push(1);
+    triangle.push(pascal);
+  }
+	printPascal(triangle);
+}
+pascalSimpleTriangle(9);
+function printPascal(arr){
+if(arr){
+for(var i=0;i<arr.length;i++){
+                var div = document.createElement('div');             
+                div.className ="divblock"
+                for(var j=0;j<arr[i].length;j++){
+                    var para = document.createElement('span');
+                    para.innerHTML=arr[i][j];
+                     para.className ="block";
+                    div.appendChild(para);
+                }
+                document.getElementById("triangle").appendChild(div);
+            }
+
+}
+	
+}
+
+
+
+
+</script>
+
+</body>
+</html>
